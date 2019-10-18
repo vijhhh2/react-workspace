@@ -9,6 +9,8 @@ export interface IInput {
     handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface ICustomButton {
-    type: "button" | "submit" | "reset" | undefined;
+export interface ICustomButton extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+    type?: "button" | "submit" | "reset" | undefined;
+    isGoogle?: boolean;
+    inverted?: boolean;
 }

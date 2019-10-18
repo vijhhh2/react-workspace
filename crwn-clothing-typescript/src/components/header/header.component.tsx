@@ -1,19 +1,54 @@
-import React from 'react';
-import './header.component.scss';
+import React from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-import { ReactComponent as Logo } from '../../assets/4.3 crown.svg.svg';
-import { Link } from 'react-router-dom';
+import CartIcon from '../cart-icon/cart-icon.component'
+import CartDropDown from '../cart-dropdown/cart-dropdown.component'
+import { auth } from '../../firebase/firebase.service'
+import { User } from '../../App'
+import { AppState } from '../../redux/store'
+import './header.component.scss'
 
-const Header: React.FC<{}> = () => (
-    <div className='header'>
-        <Link to='/'className='logo-container'>
-            <Logo />
-        </Link>
-        <div className='options'>
-            <Link className='option' to='/shop'>SHOP</Link>
-            <Link className='option' to='/contact'>CONTACT</Link>
+import { ReactComponent as Logo } from '../../assets/4.3 crown.svg.svg'
+
+interface IHeaderProps {
+  currentUser: User | null
+  hidden: boolean
+}
+
+const Header: React.FC<IHeaderProps> = ({ currentUser, hidden }) => (
+  <div className="header">
+    <Link to="/" className="logo-container">
+      <Logo />
+    </Link>
+    <div className="options">
+      <Link className="option" to="/shop">
+        SHOP
+      </Link>
+      <Link className="option" to="/contact">
+        CONTACT
+      </Link>
+      {currentUser ? (
+        <div className="option" onClick={() => auth.signOut()}>
+          SIGNOUT
         </div>
+      ) : (
+        <Link className="option" to="/signin">
+          SIGNIN
+        </Link>
+      )}
+      <CartIcon />
     </div>
-);
+    {hidden ? null : <CartDropDown />}
+  </div>
+)
 
-export default Header;
+const mapStateToProps = ({
+  user: { currentUser },
+  cart: { hidden },
+}: AppState) => ({
+  currentUser,
+  hidden,
+})
+
+export default connect(mapStateToProps)(Header)
