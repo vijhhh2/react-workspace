@@ -10,6 +10,8 @@ import { AppState } from '../../redux/store'
 import './header.component.scss'
 
 import { ReactComponent as Logo } from '../../assets/4.3 crown.svg.svg'
+import { selectCurrentUser } from '../../redux/user/user.selector'
+import { selectHidden } from '../../redux/cart/cart.selectors'
 
 interface IHeaderProps {
   currentUser: User | null
@@ -43,12 +45,9 @@ const Header: React.FC<IHeaderProps> = ({ currentUser, hidden }) => (
   </div>
 )
 
-const mapStateToProps = ({
-  user: { currentUser },
-  cart: { hidden },
-}: AppState) => ({
-  currentUser,
-  hidden,
+const mapStateToProps = (state: AppState) => ({
+  currentUser: selectCurrentUser(state),
+  hidden: selectHidden(state)
 })
 
 export default connect(mapStateToProps)(Header)

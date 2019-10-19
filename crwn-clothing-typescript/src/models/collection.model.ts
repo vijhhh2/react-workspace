@@ -2,12 +2,13 @@ export interface Collection {
     id: number;
     title: string;
     routeName: string;
-    items: CollectionEachItem[];
+    items: ShopItem[];
   }
   
- export interface CollectionEachItem {
+ export interface ShopItem {
     id: number;
     name: string;
     imageUrl: string;
     price: number;
+    quantity?: number;
   }

@@ -9,8 +9,9 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up-page/sign-in-and-si
 import Header from './components/header/header.component'
 import { auth, createUserProfileDocument } from './firebase/firebase.service'
 import { setCurrentUser } from './redux/user/user.actions'
-import './App.css'
 import { AppState } from './redux/store'
+import { selectCurrentUser } from './redux/user/user.selector';
+import './App.css'
 
 export interface User {
   id: string
@@ -81,8 +82,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   setCurrentUser: (user: User | null) => dispatch(setCurrentUser(user)),
 })
 
-const mapStateToProps = ({ user }: AppState) => ({
-  currentUser: user.currentUser,
+const mapStateToProps = (state: AppState) => ({
+  currentUser: selectCurrentUser(state),
 })
 
 export default connect(
