@@ -1,6 +1,6 @@
-import { CartActions, TOGGLE_CART_DROPDOWN, ADD_ITEM } from "./cart.types"
+import { CartActions, TOGGLE_CART_DROPDOWN, ADD_ITEM, REMOVE_ITEM, REMOVE_ITEM_FROM_CART } from "./cart.types"
 import { ShopItem } from "../../models/collection.model"
-import { addItemToCart } from './cart.service';
+import { addItemToCart, removeItemFromCart } from './cart.service';
 
 
 export interface ICartState {
@@ -24,6 +24,16 @@ const cartReducer = (state = INITIAL_STATE, action: CartActions) => {
             return {
                 ...state,
                 cartItems: addItemToCart(state.cartItems, action.payload)
+            }
+        case REMOVE_ITEM:
+            return {
+                ...state,
+                cartItems: removeItemFromCart(state.cartItems, action.payload)
+            }
+        case REMOVE_ITEM_FROM_CART:
+            return {
+                ...state,
+                cartItems: state.cartItems.filter(cartItem => cartItem.id !== action.payload.id)
             }
         default:
             return state;

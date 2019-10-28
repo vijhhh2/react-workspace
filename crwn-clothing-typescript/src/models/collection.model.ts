@@ -1,4 +1,8 @@
-export interface Collection {
+export interface Collections {
+    [key: string]: Collection
+  }
+
+  export interface Collection {
     id: number;
     title: string;
     routeName: string;

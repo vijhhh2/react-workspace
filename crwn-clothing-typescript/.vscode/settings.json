@@ -5,8 +5,10 @@
         "SIGNOUT",
         "Unmount",
         "firestore",
+        "persistor",
         "shoppage",
-        "signup"
+        "signup",
+        "womens"
     ],
     "workbench.colorCustomizations": {
         "activityBar.background": "#88d7ea",

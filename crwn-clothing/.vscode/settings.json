@@ -2,6 +2,9 @@
     "cSpell.words": [
         "SIGNOUT",
         "SIGNUP",
+        "categorypage",
+        "checkoutpage",
+        "collectionpage",
         "firestore",
         "signin"
     ],
