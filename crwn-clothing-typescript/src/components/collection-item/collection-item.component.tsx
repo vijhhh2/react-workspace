@@ -1,20 +1,20 @@
-import React from 'react'
+import React from 'react';
 import { connect } from 'react-redux';
 
-import { ShopItem } from '../../models/collection.model'
-import CustomButton from '../custom-button/custom-button.component'
+import './collection-item.component.scss';
+import { ShopItem } from '../../models/collection.model';
+import CustomButton from '../custom-button/custom-button.component';
 
-import './collection-item.component.scss'
 import { CartActions } from '../../redux/cart/cart.types';
 import { addItem } from '../../redux/cart/cart.actions';
 
 interface ICollectionItemProps {
-  item: ShopItem,
-  addItem: (item: ShopItem) => void
+  item: ShopItem;
+  addItem: (item: ShopItem) => void;
 }
 
 const CollectionItem: React.FC<ICollectionItemProps> = ({ item, addItem }) => {
-  const { name, imageUrl, price } = item
+  const { name, imageUrl, price } = item;
   return (
     <div className="collection-item">
       <div
@@ -27,13 +27,24 @@ const CollectionItem: React.FC<ICollectionItemProps> = ({ item, addItem }) => {
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
-      <CustomButton inverted onClick={() => addItem(item)} >ADD TO CART</CustomButton>
+      <CustomButton
+        className="custom-button"
+        inverted
+        onClick={() => addItem(item)}
+      >
+        ADD TO CART
+      </CustomButton>
     </div>
-  )
-}
+  );
+};
 
-const mapDispatchToProps = (dispatch: import('redux').Dispatch<CartActions>) => ({
-  addItem: (item: ShopItem) => dispatch(addItem(item))
-})
+const mapDispatchToProps = (
+  dispatch: import('redux').Dispatch<CartActions>
+) => ({
+  addItem: (item: ShopItem) => dispatch(addItem(item)),
+});
 
-export default connect(null, mapDispatchToProps)(CollectionItem)
+export default connect(
+  null,
+  mapDispatchToProps
+)(CollectionItem);

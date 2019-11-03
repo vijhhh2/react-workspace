@@ -9,6 +9,7 @@
     "@types/react-dom": "16.9.1",
     "@types/react-router-dom": "^5.1.0",
     "@types/reselect": "^2.2.0",
+    "@types/styled-components": "^4.1.20",
     "firebase": "^7.2.1",
     "node-sass": "^4.12.0",
     "react": "^16.10.2",
@@ -20,14 +21,17 @@
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
+    "styled-components": "^4.4.0",
     "typescript": "3.6.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "yarn build & firebase deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -47,6 +51,7 @@
   "devDependencies": {
     "@types/react-redux": "^7.1.4",
     "@types/redux-logger": "^3.0.7",
-    "@types/redux-persist": "^4.3.1"
+    "@types/redux-persist": "^4.3.1",
+    "@types/redux-thunk": "^2.1.0"
   }
 }

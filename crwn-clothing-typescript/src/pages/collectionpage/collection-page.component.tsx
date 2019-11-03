@@ -9,23 +9,21 @@ import { Collection } from '../../models/collection.model';
 import CollectionItem from '../../components/collection-item/collection-item.component';
 
 interface ICollectionPageProps extends RouteComponentProps {
-    collection: Collection
+    collection: Collection | null
 }
 
-const CollectionPage: React.FC<ICollectionPageProps> = ({ match, collection }) => {
-  console.log(match.params);
-  console.log(collection);
-  const { items, title } = collection;
-  return (
-    <div className="collection-page">
-      <h1 className='title'>{title}</h1>
-      <div className='items'>
-          {
-              items.map(item => <CollectionItem key={item.id} item={item} />)
-          }
+const CollectionPage: React.FC<ICollectionPageProps> = ({ collection }) => {
+    const { items, title } = (collection as Collection);
+    return (
+      <div className="collection-page">
+        <h1 className='title'>{title}</h1>
+        <div className='items'>
+            {
+                items.map(item => <CollectionItem key={item.id} item={item} />)
+            }
+        </div>
       </div>
-    </div>
-  );
+    );
 };
 
 const mapStateToProps = (state: AppState, ownUrlParams: ICollectionPageProps) => ({

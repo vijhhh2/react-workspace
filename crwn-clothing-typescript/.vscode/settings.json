@@ -4,6 +4,7 @@
         "SIGNIN",
         "SIGNOUT",
         "Unmount",
+        "collectionpage",
         "firestore",
         "persistor",
         "shoppage",
